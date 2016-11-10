@@ -1,6 +1,6 @@
 Music_Tracker  
 
-     Music Tracker was created in order to connect different music APIs and provide an exceptional experience to its users. Connect with artists, learn more about them and let them create playlists for different moments of their life. 
+  Music Tracker was created in order to connect different music APIs and provide an exceptional experience to its users. Connect with artists, learn more about them and let them create playlists for different moments of their life. 
  
 Getting Started  
     Music Tracker offers different features to its users. These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. 
