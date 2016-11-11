@@ -1,1 +1,1 @@
-http://www.api.musictracker.uk
+echo "api.musictracker.uk" > CNAME
