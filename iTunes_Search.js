@@ -1,35 +1,40 @@
 'use strict'
 
 const request = require('request')
-try {
-	if (process.argv.length < 2) {
-		throw 'missing parameter'
-  }
-  const artist_name = process.argv[2]
-  if (process.argv[3] == "undefined"){
-     var url = ("https://itunes.apple.com/search?term=${artist_name}")
-  }else{
-     const artist_lastname = process.argv[3]
-     var url = (`https://itunes.apple.com/search?term=${artist_name}+${artist_lastname}`)
-}
 
-request.get( url, (err, res, body) => {
-			if (err) {
-				throw 'could not complete request'
-			}
-		const json = JSON.parse(body)
-		const output = JSON.stringify(json, null, 2)
-		if (getValues(json,"resultCount") !== "0"){
-			throw 'Artist Not Found in iTunes Database'
-		}
-  	var tracklist = getValues(json,"trackName")
-		console.log(tracklist)
-				 }
-    );
-}
-		  catch(err) {
-			console.log(err)
-			}
+var search_tracks_by_name = function (artist_full_name, callback) {
+		const artist = artist_full_name.replace(' ','+')
+		var url = ("https://itunes.apple.com/search?term="+artist)
+		request.get( url, (err, res, body) => {
+      if (err) {
+						throw 'could not complete request'}
+				const json = JSON.parse(body)
+				const output = JSON.stringify(json, null, 2)
+        if (getValues(json,"resultCount") == "0"){
+					 throw 'Artist Not Found in iTunes Database'
+				} else {
+          var tracklist = getValues(json,"trackName");
+    console.log(tracklist);
+        }
+    })
+   }
+
+var search_by_name = function (artist_full_name, callback) {
+		const artist = artist_full_name.replace(' ','+')
+		var url = ("https://itunes.apple.com/search?term="+artist)
+		request.get( url, (err, res, body) => {
+      if (err) {
+						throw 'could not complete request'}
+				const json = JSON.parse(body)
+				const output = JSON.stringify(json, null, 2)
+        if (getValues(json,"resultCount") == "0"){
+					 throw 'Artist Not Found in iTunes Database'
+				} else {
+           search_by_name(acallback)
+
+        }
+    })
+   }
 
 function getValues(obj, key) {
     var objects = [];
@@ -43,3 +48,22 @@ function getValues(obj, key) {
     }
     return objects;
 }
+
+//Lab Demo
+// check username exists
+var check = function(artist_full_name) {
+  	const artist = artist_full_name.replace(' ','+')
+    search_by_name(artist, function(err, result) {
+        if (err) {
+            // it didn't work i.e. not found
+            console.error(err)
+            throw new Error("Error Occured while search for result")
+        } else {
+            // success: i.e. result has a value
+            console.log("The result is now being displayed below :")
+            console.log(result)
+        }
+    })
+}
+check("Martin Garrix")
+console.log(search_by_name("Martin Garrix"))
