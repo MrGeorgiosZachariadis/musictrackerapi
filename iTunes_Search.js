@@ -2,9 +2,27 @@
 
 const request = require('request')
 
+function search_tracks (artist_full_name) {
+  return new Promise((resolve, reject) => {
+    request('https://itunes.apple.com/search?term='+url_formatting(artist_full_name), (err, res, body) => {
+      if (err) {
+         reject(err); return;
+      }
+      const json = JSON.parse(body)
+			const output = JSON.stringify(json, null, 2)
+			 if (getValues(json,"resultCount") == "0"){
+					 throw 'Artist Not Found in iTunes Database'
+			 } else {
+          var tracklist = getValues(json,"trackName");
+				 	console.log(tracklist) 
+				 	resolve(body);
+			 }
+		})
+	})
+}
+
 var search_tracks_by_name = function (artist_full_name, callback) {
-		const artist = artist_full_name.replace(' ','+')
-		var url = ("https://itunes.apple.com/search?term="+artist)
+		var url = ("https://itunes.apple.com/search?term="+url_formatting(artist_full_name))
 		request.get( url, (err, res, body) => {
       if (err) {
 						throw 'could not complete request'}
@@ -14,14 +32,14 @@ var search_tracks_by_name = function (artist_full_name, callback) {
 					 throw 'Artist Not Found in iTunes Database'
 				} else {
           var tracklist = getValues(json,"trackName");
-    console.log(tracklist);
+			    return (tracklist,callback)
         }
     })
    }
 
+
 var search_by_name = function (artist_full_name, callback) {
-		const artist = artist_full_name.replace(' ','+')
-		var url = ("https://itunes.apple.com/search?term="+artist)
+	 	var url = ("https://itunes.apple.com/search?term="+url_formatting(artist_full_name))
 		request.get( url, (err, res, body) => {
       if (err) {
 						throw 'could not complete request'}
@@ -30,11 +48,17 @@ var search_by_name = function (artist_full_name, callback) {
         if (getValues(json,"resultCount") == "0"){
 					 throw 'Artist Not Found in iTunes Database'
 				} else {
-           search_by_name(acallback)
-
-        }
+					 var artist_name = getValues(json,"artistName")  
+					 console.log(artist_name)
+					 }
     })
    }
+  
+function url_formatting (artist_full_name) {
+	  var artist = artist_full_name.replace(' ','+')
+		return (artist)	  
+}
+
 
 function getValues(obj, key) {
     var objects = [];
@@ -65,5 +89,8 @@ var check = function(artist_full_name) {
         }
     })
 }
+
+url_formatting("Martin Garrix")
+search_by_name("Martin Garrix")
 check("Martin Garrix")
-console.log(search_by_name("Martin Garrix"))
+search_tracks("Martin Garrix")
