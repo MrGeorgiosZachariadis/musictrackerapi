@@ -1,0 +1,187 @@
+* {
+  margin top: 60px;
+  padding: 0;
+}
+
+.background {
+  height : 100%;
+  z-index : -1;
+  width: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+}
+
+body {
+  color: #000000;
+  font-family: "Open Sans", sans-serif;
+  font-size : 20px;
+  
+}
+
+h2 {
+  color: #000000;
+  font-family: 'Poiret One', cursive;
+  font-weight: bold;
+  font-size: 1.9em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #000000;
+  font-size : 35px;
+  text-decoration: none;
+}
+
+.login {
+  width: 350px;
+  position: absolute;
+  top: 9%;
+  color : #000000;
+  left: 53%;
+  margin-left: -175px;
+}
+
+input[type="text"]{
+  width: 350px;
+  padding: 20px 0px;
+  background : transparent;
+  border: 0;
+  font-family: 'Poiret One', cursive;
+  color: 	#000000;
+  border-bottom: 1px solid #C0C0C0;
+  outline: none;
+  font-size: 27px;
+}
+input[type=checkbox] {
+  display: none;
+  left : 40px;
+  color : #000000;
+}
+
+input[type="password"] {
+  width: 350px;
+  padding: 20px 0px;
+  background : transparent;
+  border: 0;
+  font-family: 'Poiret One', cursive;
+  color: #000000;
+  border-bottom: 1px solid #C0C0C0;
+  outline: none;
+  font-size: 35px;
+}
+
+input[type="email"] {
+  width: 350px;
+  padding: 20px 0px;
+  background : transparent;
+  border: 0;
+  font-family: 'Poiret One', cursive;
+  color:  #000000;
+  border-bottom: 1px solid #C0C0C0;
+  outline: none;
+  font-size: 37px;
+}
+
+label {
+  display: inline-block;
+  position: absolute;
+  margin-right: 10px;
+  font-family: 'Poiret One', cursive;
+  font-size : 23px;
+  width: 8px;
+  height: 8px;
+  color: 	#000000;
+  border-radius: 50%;
+  background: transparent;
+  content: "";
+  left : 40px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: 3px solid #435160;
+}
+
+#agree:checked ~ label[for=agree] {
+  background: #FFFFFF;
+  color: #000000;
+  position : relative;
+  display: inline-block;
+  left : 20px;
+}
+
+input[type="submit"] {
+  background: #FF0000;
+  border: 0;
+  width: 350px;
+  height: 40px;
+  border-radius: 3px;
+  color: #000000;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+input[type="submit"]:hover {
+  background: #16aa56;
+  animation-name: shake;
+}
+
+.forgot {
+  margin-top: 30px;
+  display: block;
+  font-size: 15px;
+  color : #f000000;
+  text-align: center;
+  font-weight: bold;
+}
+.forgot:hover {
+  margin-top: 30px;
+  display: block;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #000000;
+}
+
+.agree {
+  padding: 30px 0px;
+  font-size: 18px;
+  text-indent: 25px;
+  line-height: 15px;
+}
+
+::-webkit-input-placeholder {
+  color: #000000;
+  font-size: 15px;
+}
+
+.animated {
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+.btn{
+    
+}
+
+.foo {   
+    position : relative;
+    left : 615px;
+    top : 155px;
+    width: 370px;
+    height: 50px;
+    margin: 5px;
+}
