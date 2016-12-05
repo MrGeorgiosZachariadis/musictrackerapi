@@ -4,25 +4,24 @@
    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <title>
-      JavaScript form validator Example
+       Music Tracker API Register Form
     </title>
     <style type="text/css" xml:space="preserve">
 BODY, P,TD{ font-family: Arial,Verdana,Helvetica, sans-serif; font-size: 10pt }
 A{font-family: Arial,Verdana,Helvetica, sans-serif;}
 B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : bold;}
 .error_strings{ font-family:Verdana; font-size:14px; color:#660000;}
-</style><script language="JavaScript" src="gen_validatorv4.js"
+</style><script language="JavaScript" src="validator.js"
     type="text/javascript" xml:space="preserve"></script>
   </head>
   <body>
-  <h1>Comparison validations sample</h1>
+  <h1>Register With MusicTracker API </h1>
   <ul>
-  <li>Password should not be same as user name (validator: "neelmnt")</li>
-  <li>Confirm Password should be same as password (validator: "eqelmnt")</li>
-  <li>The numbers should match this relation: large num > medium num > small num</li>
+  <li>Password should not be same as user name.</li>
+  <li>Confirm Password should be same as password.</li>
   </ul>
     <form action="" name="myform" id="myform">
       <table cellspacing="2" cellpadding="2" border="0">
@@ -49,31 +48,7 @@ B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : 
           <td>
             <input type="text" name="confpassword" />
           </td>
-        </tr>
-        <tr>
-          <td align="right">
-            A Large Number
-          </td>
-          <td>
-            <input type="text" name="largenum" />
-          </td>
-        </tr>
-        <tr>
-          <td align="right">
-            Medium Number
-          </td>
-          <td>
-            <input type="text" name="midnum" />
-          </td>
-        </tr>        
-        <tr>
-          <td align="right">
-            Small Number
-          </td>
-          <td>
-            <input type="text" name="smallnum" />
-          </td>
-        </tr>        
+        </tr>       
         <tr>
           <td align="right"></td>
           <td>
@@ -96,10 +71,6 @@ B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : 
   
   frmvalidator.addValidation("confpassword","eqelmnt=password","The confirmed password is not same as password");
   frmvalidator.addValidation("password","neelmnt=username","The password should not be same as username");
-  
-  frmvalidator.addValidation("midnum","ltelmnt=largenum","medium number should be smaller than large number");
-  
-  frmvalidator.addValidation("midnum","gtelmnt=smallnum","medium number should be greater than small number");
   
 //]]></script>
   </body>
