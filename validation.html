@@ -7,39 +7,73 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>
-      JavaScript form validator Example: Conditional validation
+      JavaScript form validator Example
     </title>
     <style type="text/css" xml:space="preserve">
 BODY, P,TD{ font-family: Arial,Verdana,Helvetica, sans-serif; font-size: 10pt }
 A{font-family: Arial,Verdana,Helvetica, sans-serif;}
 B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : bold;}
-.error_strings{ font-family:Verdana; font-size:14px; color:#660000; background-color:#ff0;}
+.error_strings{ font-family:Verdana; font-size:14px; color:#660000;}
 </style><script language="JavaScript" src="gen_validatorv4.js"
     type="text/javascript" xml:space="preserve"></script>
   </head>
   <body>
-  <h1>Conditional validation</h1>
+  <h1>Comparison validations sample</h1>
   <ul>
-  <li>The file upload is a mandatory field</li>
-  <li>Allowed file types are: jpg,gif,png</li>
+  <li>Password should not be same as user name (validator: "neelmnt")</li>
+  <li>Confirm Password should be same as password (validator: "eqelmnt")</li>
+  <li>The numbers should match this relation: large num > medium num > small num</li>
   </ul>
     <form action="" name="myform" id="myform">
       <table cellspacing="2" cellpadding="2" border="0">
         <tr>
-          <td align="right" valign="top">
-            How did you hear about us?
+          <td align="right">
+            User Name
           </td>
           <td>
-                <div id='myform_hearabout_errorloc' class="error_strings"></div>
-               <div  id='hearabout_0_container'><input type='radio' name='hearabout' id='hearabout_radio_0' value='Newspaper Ad'/><label for='hearabout_radio_0'  id='hearabout_radio_0_label'>Newspaper Ad</label></div>
-               <div  id='hearabout_1_container'><input type='radio' name='hearabout' id='hearabout_radio_1' value='Search Engine' tabindex='1'/><label for='hearabout_radio_1' id='hearabout_radio_1_label'>Search Engine</label></div>
-               <div  id='hearabout_2_container'><input type='radio' name='hearabout' id='hearabout_radio_2' value='Other' tabindex='2'/><label for='hearabout_radio_2'  id='hearabout_radio_2_label'>Other</label></div>
-               <div >
-                  <div id='myform_hearabout_other_errorloc' class="error_strings"></div>
-                  <input type='text' name='hearabout_other' id='hearabout_other' size='20' />
-               </div>
+            <input type="text" name="username" />
           </td>
         </tr>      
+        <tr>
+          <td align="right">
+            Password
+          </td>
+          <td>
+            <input type="text" name="password" />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            Confirm Password
+          </td>
+          <td>
+            <input type="text" name="confpassword" />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            A Large Number
+          </td>
+          <td>
+            <input type="text" name="largenum" />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            Medium Number
+          </td>
+          <td>
+            <input type="text" name="midnum" />
+          </td>
+        </tr>        
+        <tr>
+          <td align="right">
+            Small Number
+          </td>
+          <td>
+            <input type="text" name="smallnum" />
+          </td>
+        </tr>        
         <tr>
           <td align="right"></td>
           <td>
@@ -57,15 +91,16 @@ B {	font-family : Arial, Helvetica, sans-serif;	font-size : 12px;	font-weight : 
     </form><script language="JavaScript" type="text/javascript"
     xml:space="preserve">//<![CDATA[
   var frmvalidator  = new Validator("myform");
-  frmvalidator.EnableOnPageErrorDisplay();
+  frmvalidator.EnableOnPageErrorDisplaySingleBox();
   frmvalidator.EnableMsgsTogether();
   
-  frmvalidator.addValidation("hearabout","selone","Please select an option from 'How did you hear about us'");
-
-  frmvalidator.addValidation("hearabout_other","req","Please fill-in this textbox",
-        "VWZ_IsChecked(document.forms['myform'].elements['hearabout'],'Other')");
-
-
+  frmvalidator.addValidation("confpassword","eqelmnt=password","The confirmed password is not same as password");
+  frmvalidator.addValidation("password","neelmnt=username","The password should not be same as username");
+  
+  frmvalidator.addValidation("midnum","ltelmnt=largenum","medium number should be smaller than large number");
+  
+  frmvalidator.addValidation("midnum","gtelmnt=smallnum","medium number should be greater than small number");
+  
 //]]></script>
   </body>
 </html>
